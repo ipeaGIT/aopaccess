@@ -56,8 +56,21 @@ list(
     retrieval = "worker",
     storage = "worker",
     iteration = "list"
-  )
+  ),
   
   # 2_calculate_access
-  
+  tar_target(
+    cumulative_access,
+    calculate_cum_access(
+      ttm_paths,
+      opportunities_paths,
+      modes,
+      time_thresholds
+    ),
+    format = "file_fast",
+    pattern = map(ttm_paths, cross(opportunities_paths, modes)),
+    retrieval = "worker",
+    storage = "worker",
+    iteration = "list"
+  )
 )
